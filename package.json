@@ -1,0 +1,21 @@
+{
+  "name": "tweet-action",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "ncc build src/index.js -o dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@zeit/ncc": "^0.22.3"
+  },
+  "dependencies": {
+    "@actions/core": "^1.2.4",
+    "@actions/github": "^3.0.0",
+    "axios": "^0.19.2",
+    "twitter": "^1.7.1"
+  }
+}

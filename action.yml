@@ -1,0 +1,5 @@
+name: 'GitHub Tweet Action'
+description: 'Send tweet on push'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
