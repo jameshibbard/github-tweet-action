@@ -1,3 +1,4 @@
+const Twitter = require('twitter');
 const axios = require('axios');
 const core = require('@actions/core');
 const github = require('@actions/github');
@@ -22,8 +23,46 @@ async function run() {
     const tweetTextURL = `https://raw.githubusercontent.com/${repoName}/master/${tweetPath}`;
     const tweetImageURL = `https://raw.githubusercontent.com/${repoName}/master/${imagePath}`;
 
-    console.log(tweetTextURL);
-    console.log(tweetImageURL);
+    const client = new Twitter({
+      consumer_key: core.getInput('consumer-key'),
+      consumer_secret: core.getInput('consumer-secret'),
+      access_token_key: core.getInput('access-token'),
+      access_token_secret: core.getInput('access-token-secret'),
+    });
+
+    // Get Tweet text
+    const tweetResponse = await axios.get(tweetTextURL);
+
+    // Get image
+    const imageResponse = await axios.get(tweetImageURL, { responseType: 'arraybuffer' });
+    const imageData = Buffer.from(imageResponse.data, 'utf-8');
+
+    client.post(
+      'media/upload',
+      { media: imageData },
+      (error, media, response) => {
+        if (error) {
+          console.log(error);
+        } else {
+          const status = {
+            status: tweetResponse.data,
+            media_ids: media.media_id_string,
+          };
+
+          client.post(
+            'statuses/update',
+            status,
+            (error, tweet, response) => {
+              if (error) {
+                console.log(error);
+              } else {
+                console.log('Tweet was posted!');
+              }
+            },
+          );
+        }
+      },
+    );
   } catch (error) {
     core.setFailed(error.message);
   }

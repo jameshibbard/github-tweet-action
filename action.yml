@@ -1,5 +1,23 @@
 name: 'GitHub Tweet Action'
 description: 'Send tweet on push'
+author: 'James Hibbard'
+inputs:
+  consumer-key:
+    description: >
+      Consumer API key, available in the "Keys and tokens"
+      section of your application in the Twitter Developer site.
+  consumer-secret:
+    description: >
+      Consumer API secret key, available in the "Keys and tokens"
+      section of your application in the Twitter Developer site.
+  access-token:
+    description: >
+      Application access token, available in the "Keys and tokens"
+      section of your application in the Twitter Developer site.
+  access-token-secret:
+    description: >
+      Application access token secret, available in the "Keys and tokens"
+      section of your application in the Twitter Developer site.
 runs:
   using: 'node12'
   main: 'dist/index.js'
