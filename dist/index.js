@@ -29253,6 +29253,15 @@ async function run() {
     const tweetTextURL = `https://raw.githubusercontent.com/${repoName}/master/${tweetPath}`;
     const tweetImageURL = `https://raw.githubusercontent.com/${repoName}/master/${imagePath}`;
 
+    // Bail if correct files aren't present
+    if (tweetPath === undefined || imagePath === undefined) {
+      console.log('Couldn\'t find expected files');
+      console.log(tweetTextURL);
+      console.log(tweetImageURL);
+
+      return;
+    }
+
     const client = new Twitter({
       consumer_key: core.getInput('consumer-key'),
       consumer_secret: core.getInput('consumer-secret'),
