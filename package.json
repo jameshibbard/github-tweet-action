@@ -10,12 +10,12 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@zeit/ncc": "^0.22.3"
+    "@vercel/ncc": "^0.27.0"
   },
   "dependencies": {
-    "@actions/core": "^1.2.4",
-    "@actions/github": "^3.0.0",
-    "axios": "^0.19.2",
+    "@actions/core": "^1.2.6",
+    "@actions/github": "^4.0.0",
+    "axios": "^0.21.1",
     "twitter": "^1.7.1"
   }
 }
