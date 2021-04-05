@@ -1,5 +1,7 @@
 # Send a Tweet When Pull Request is Merged
 
-Make a pull request containing the text for a tweet and an optional image.
+This action will send a tweet in the form of:
 
-When the PR is merged, the tweet will be sent.
+> A new PR was merged into &lt;reponame&gt;: &lt;commit-message&gt;
+
+When a pull request is merged into the main branch.
